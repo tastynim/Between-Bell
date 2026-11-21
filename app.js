@@ -94,9 +94,9 @@
   }
 
   function loadTasks() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    if (raw === null) return demoTasks();
     try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw === null) return demoTasks();
       var parsed = JSON.parse(raw);
       return Array.isArray(parsed) ? parsed : [];
     } catch (e) {
@@ -108,7 +108,11 @@
   saveTasks();
 
   function saveTasks() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    } catch (e) {
+      // Storage blocked or full: keep working in memory for this page.
+    }
   }
 
   // ---------- Recommendation ----------
