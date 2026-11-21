@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Between Bell</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Between Bell</h1>
+    <p class="tagline">Pick the right study task for the break you have.</p>
+  </header>
+
+  <main>
+    <section class="card recommend" aria-labelledby="recommend-title">
+      <h2 id="recommend-title">What should I study now?</h2>
+      <fieldset class="time-picker">
+        <legend>I have</legend>
+        <label><input type="radio" name="minutes" value="15"> <span>15 min</span></label>
+        <label><input type="radio" name="minutes" value="30" checked> <span>30 min</span></label>
+        <label><input type="radio" name="minutes" value="60"> <span>60 min</span></label>
+      </fieldset>
+      <button id="suggest-btn" class="btn primary big" type="button">Suggest my next task</button>
+      <div id="suggestion" class="suggestion" aria-live="polite" hidden></div>
+    </section>
+
+    <section aria-labelledby="courses-title">
+      <h2 id="courses-title">Courses</h2>
+      <div id="course-cards" class="course-grid"></div>
+    </section>
+
+    <section class="card" aria-labelledby="add-title">
+      <h2 id="add-title">Add a task</h2>
+      <form id="task-form" class="task-form">
+        <label class="span-2">Task
+          <input id="f-task" name="task" type="text" required maxlength="120" placeholder="e.g. Review lecture 5 slides">
+        </label>
+        <label>Course
+          <select id="f-course" name="course" required></select>
+        </label>
+        <label>Due
+          <input id="f-due" name="due" type="date">
+        </label>
+        <label>Minutes
+          <input id="f-minutes" name="minutes" type="number" min="1" max="600" step="1" required value="15">
+        </label>
+        <label>Priority
+          <select id="f-priority" name="priority">
+            <option>High</option>
+            <option selected>Medium</option>
+            <option>Low</option>
+          </select>
+        </label>
+        <label>Status
+          <select id="f-status" name="status">
+            <option selected>To do</option>
+            <option>Done</option>
+          </select>
+        </label>
+        <div class="form-actions span-2">
+          <button class="btn primary" type="submit">Add task</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="tasks-title">
+      <h2 id="tasks-title">Tasks</h2>
+      <p id="empty-tasks" class="muted" hidden>No tasks yet. Add one above or import a CSV.</p>
+      <ul id="task-list" class="task-list"></ul>
+    </section>
+
+    <section class="card" aria-labelledby="csv-title">
+      <h2 id="csv-title">Manual CSV import/export</h2>
+      <p>Export your Notion Student OS task database as CSV with these exact headers:</p>
+      <p><code>Task,Course,Due,Minutes,Priority,Status</code></p>
+      <div class="csv-actions">
+        <label class="btn secondary file-btn">Import Notion CSV
+          <input id="csv-input" type="file" accept=".csv,text/csv">
+        </label>
+        <button id="export-btn" class="btn secondary" type="button">Export progress CSV</button>
+      </div>
+      <p id="csv-message" class="csv-message" role="status"></p>
+      <p class="muted small">Importing replaces your current tasks (you will be asked to confirm).
+        Exporting progress downloads a CSV file only; it does <strong>not</strong> automatically update Notion.
+        To update Notion, import the exported file into your Notion database yourself.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Tasks are saved in this browser (localStorage). No login, no server.</p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

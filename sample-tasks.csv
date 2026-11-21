@@ -1,0 +1,5 @@
+Task,Course,Due,Minutes,Priority,Status
+Example: Review lecture notes,CSE422,"December 7, 2026",15,High,To do
+"Example: Practice problem set, part 1",CSE427,12/08/2026,30,Medium,To do
+Example: Read assigned chapter,CSE447,2026-12-09,20,Low,To do
+"Example: Work on ""lab 3"" assignment",CSE321,"Dec 10, 2026 3:00 PM",45,High,To do
