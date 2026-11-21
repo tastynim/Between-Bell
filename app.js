@@ -302,6 +302,7 @@
 
   function csvCell(value) {
     var s = String(value == null ? "" : value);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
     return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
   }
 
