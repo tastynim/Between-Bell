@@ -440,6 +440,12 @@
       setCsvMessage("Exported " + tasks.length + " task(s) to between-bell-progress.csv. This does not update Notion automatically.", false);
     });
 
+    window.addEventListener("storage", function (e) {
+      if (e.key !== STORAGE_KEY) return;
+      tasks = loadTasks();
+      renderAll();
+    });
+
     renderAll();
   }
 
