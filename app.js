@@ -337,7 +337,7 @@
       if (!name) problem = "missing Task";
       else if (COURSES.indexOf(course) === -1) problem = "unknown Course \"" + (r[1] || "") + "\"";
       else if (due === null) problem = "unrecognized Due \"" + r[2] + "\"";
-      else if (!(minutes > 0) || Math.floor(minutes) !== minutes) problem = "invalid Minutes \"" + (r[3] || "") + "\"";
+      else if (!Number.isInteger(minutes) || minutes <= 0) problem = "invalid Minutes \"" + (r[3] || "") + "\"";
       else if (!priority) problem = "invalid Priority \"" + r[4] + "\"";
       else if (!status) problem = "invalid Status \"" + r[5] + "\"";
       if (problem) { skipped.push("row " + line + ": " + problem); return; }
